@@ -1,0 +1,45 @@
+<form>
+    <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input 
+              required
+              ngModel 
+              minlength="3" 
+              maxlength="10" 
+              pattern="banana" 
+              name="firstName" 
+              #firstName="ngModel" 
+              id="firstName" 
+              (change)="log(firstName)" 
+              type="text" 
+              class="form-control">
+    </div>
+    <div 
+        class="alert alert-danger" 
+        *ngIf="firstName.touched && !firstName.valid">
+        <div 
+           *ngIf="firstName.errors?.['required']">
+              First Name is required.
+            </div>
+        <div 
+           *ngIf="firstName.errors?.['minlength']">
+              First Name should be minimum {{firstName.errors?.['minlength']?.['requiredLength']}} character.
+            </div>
+        <div 
+           *ngIf="firstName.errors?.['pattern']">
+           First Name doesn't match the pattern.
+        </div>
+    </div>
+    <div class="form-group">
+         <label for="comment">comment</label>
+         <textarea ngModel name="comment" #comment="ngModel" id="comment" cols="30" (change)="log(comment)" rows="10" class="form-control"></textarea>
+    </div>
+    <button class="btn btn-primary">Submit</button>
+ </form>
+
+   
+   <mat-select>
+     <mat-option *ngFor="let color of colors">
+         {{color.name}}
+     </mat-option>
+   <mat-select>
